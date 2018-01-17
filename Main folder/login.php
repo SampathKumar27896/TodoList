@@ -82,7 +82,7 @@ if(isset($_POST['submit'])) {
 		$sql="select Id from login where UserName='$userName' and passWord='$passWord'";
 
 		$_SESSION['login_user'] = $userName;
-		
+		$_SESSION['connection'] = $connection;
 		$result = mysqli_query($connection,$sql);
 		$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
 		$user_id = $row['Id'];

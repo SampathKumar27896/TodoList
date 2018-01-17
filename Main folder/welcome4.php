@@ -98,6 +98,9 @@ $sql = "select * from my_task where id=$rows";
 		if ($result->num_rows > 0) {
     
     while($row = $result->fetch_assoc()) {
+    	if($row['task_completed']==1){
+                echo '<script>Complete('.$row['id'].');</script>////';
+        }
         echo "<tr id='row{$row['id']}'><td>{$row['UserId']}</td>
         <td>{$row['TaskName']}</td>
         <td>{$row['task_completed']}<input type='button' value='Complete' id={$row['id']} onclick='Complete({$row['id']})'></td>

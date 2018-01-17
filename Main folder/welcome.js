@@ -48,9 +48,38 @@ function Complete(data){
       //alert("row"+data);
       
       $("#row"+data).css("background-color","#00ff00");
-      $("#row"+data).addClass("change_green");
+      //$("#row"+data).addClass("change_green");
+      $.ajax({
 
+            type: 'post',
+            url: 'welcome5.php',
+            data: {butId:data},
+            
+            
+          });
 
           
 
 }
+function sample(){
+    $(function () {
+      //  alert("Function called");
+        $('#form2').on('submit', function (e) {
+
+          e.preventDefault();
+
+          $.ajax({
+            type: 'post',
+            url: 'import.php',
+            data: $('form').serialize(),
+            success: function (data) {
+              //alert('form was submitted');
+              console.log(data);
+              $('#div1').html(data)
+            }
+          });
+
+        });
+
+      });
+  }

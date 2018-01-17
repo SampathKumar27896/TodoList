@@ -16,7 +16,6 @@ $username="root";
 $password ="";
 $column_name="";
 $total_tasks = "";
-$columnHeader =''; 
 $dbname = "sample_database";
 $set_data='';
 
@@ -34,21 +33,21 @@ if(!$connection->query($sql))
 	echo "Error: " . $sql . "<br>" . $connection->error;
 $result = $connection->query($sql);
 
-$columnHeader = '';  
-$columnHeader = "UserID"."\t"."Task Name"."\t"."<br>";  
+$column_header = '';  
+$column_header = "UserID"."\t"."Task Name"."\t"."<br>";  
   
-$setData = '';  
+$set_data = '';  
   
 while ($rec = mysqli_fetch_row($result)) {  
 
     // $rowData = '';  
-    $rowData = '';
+    $row_data = '';
   foreach($rec as $value)
   {
     $value = '"' . $value . '"' . "\t";
-    $rowData .= $value;
+    $row_data .= $value;
   }
-  $setData .= trim($rowData)."\n";
+  $set_data .= trim($row_data)."\n";
       
      
 }  
@@ -59,7 +58,7 @@ header("Content-Disposition: attachment; filename=User_Detail_Reoprt.xls");
 header("Pragma: no-cache");  
 header("Expires: 0");  
   
- echo ucwords($columnHeader) . "\n" . $setData . "\n";  
+ echo ucwords($column_header) . "\n" . $set_data . "\n";  
 //echo ucwords($columnHeader) . "\n" . $set_data . "\n";  
 
 	?>

@@ -85,7 +85,7 @@ function Complete(data){
 <script >
   $(function () {
       //  alert("Function called");
-        $('form').on('submit', function (e) {
+        $('#form1').on('submit', function (e) {
 
           e.preventDefault();
 
@@ -110,25 +110,25 @@ function Complete(data){
 
 
 
-		$userName=$passWord=$original_Pass = "";
-		$servername = "localhost";
-		$username="root";
-		$password ="";
-		$column_name="";
-		$total_tasks = "";
+// 		$userName=$passWord=$original_Pass = "";
+// 		$servername = "localhost";
+// 		$username="root";
+// 		$password ="";
+// 		$column_name="";
+// 		$total_tasks = "";
 
-		$dbname = "sample_database";
-
-
-		$connection = new mysqli($servername,$username,$password,$dbname);
+// 		$dbname = "sample_database";
 
 
+// 		$connection = new mysqli($servername,$username,$password,$dbname);
 
-if($connection->connect_error){
-	die("Connection Failed:".$connection->connect_error);
-}else{
-	echo "Connection Successful<br>";
-}
+
+
+// if($connection->connect_error){
+// 	die("Connection Failed:".$connection->connect_error);
+// }else{
+// 	echo "Connection Successful<br>";
+// }
 
 //echo "Welcome home: ".$_SESSION['login_user']."Your Id is:".$_SESSION['login_id'];
 
@@ -140,14 +140,28 @@ if($connection->connect_error){
 ?>
 <div>
 
-<form  method ="post">
+<form  method ="post" id='form1'>
 
 Task: <input type='text' name="task"  id="text"></textarea>
 
 <input type="submit" name="Add" id="Add" >
 
+
 </form>
 </div>
+<form class="form-horizontal well" action="import.php" method="post" name="upload_excel" enctype="multipart/form-data" id='form2'>
+          
+            
+            
+                <label>CSV/Excel File:</label>
+              
+                <input type="file" name="file" id="file" class="input-large">
+             
+ 
+            
+          
+          <button onclick='sample()' name='Import'>Upload</button>
+        </form>
 <?php 
 	echo "Login id:....".$_SESSION['login_id'];
 	

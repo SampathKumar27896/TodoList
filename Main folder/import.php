@@ -7,9 +7,12 @@
 <html>
 <head>
 	<title></title>
+	<script>
+	
+	</script>
 </head>
 <body>
-<form class="form-horizontal well" action="import.php" method="post" name="upload_excel" enctype="multipart/form-data">
+<!-- <form class="form-horizontal well" action="import.php" method="post" name="upload_excel" enctype="multipart/form-data" id='form2'>
 					<fieldset>
 						<legend>Import CSV/Excel file</legend>
 						<div class="control-group">
@@ -27,7 +30,8 @@
 							</div>
 						</div>
 					</fieldset>
-				</form>
+					<button onclick='sample()'>click</button>
+				</form> -->
 
 <?php
 $userName=$passWord=$original_Pass = "";
@@ -49,7 +53,7 @@ if($connection->connect_error){
 }
 if(isset($_POST["Import"])){
  
- 		$user_id = 1;
+ 		$user_id = $_SESSION['login_id'];
 		echo $filename=$_FILES["file"]["tmp_name"];
  
  
@@ -79,7 +83,7 @@ if(isset($_POST["Import"])){
 	         //throws a message if data successfully imported to mysql database from excel file
 	         echo "<script type=\"text/javascript\">
 						alert(\"CSV File has been successfully Imported.\");
-						window.location = \"import.php\"
+						window.location = \"welcome.php\"
 					</script>";
  
  

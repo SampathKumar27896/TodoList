@@ -17,12 +17,30 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+
+.intro {
+    font-size: 150%;
+    background-color: red;
+}
+
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  alert("hello");
+    $("button").click(function(){
+
+        $("#heading").addClass("intro");
+    });
+});
+</script>
+
+
 </head>
 <body>
 
 <table>
-  <tr>
+  <tr id='heading' >
     <th>Company</th>
     <th>Contact</th>
     <th>Country</th>
@@ -58,6 +76,6 @@ tr:nth-child(even) {
     <td>Italy</td>
   </tr>
 </table>
-
+<button>Add a class name to the first p element</button>
 </body>
 </html>

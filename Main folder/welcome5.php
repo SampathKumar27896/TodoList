@@ -7,7 +7,8 @@
 <html>
 <head>
 	<title></title>
-		<style>
+</head>
+<style>
 
 table {
     font-family: arial, sans-serif;
@@ -24,18 +25,8 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
-
-  .change_green{
-    background-color: "#00ff00";
-  }
-
 </style>
-<script src='welcome.js'></script>
-</head>
 <body>
-	<h1>Hello</h1>
-<div>
-    <form  method ="post">
 	<table>
   <tr>
   	
@@ -52,9 +43,8 @@ tr:nth-child(even) {
 
     
   </tr>
-<?php
-
-$userName=$passWord=$original_Pass = "";
+	<?php
+	$userName=$passWord=$original_Pass = "";
 $servername = "localhost";
 $username="root";
 $password ="";
@@ -73,24 +63,37 @@ if($connection->connect_error){
 }
 
 ///
-$task ="";
-$user_id = $_SESSION['login_id'];
+
+
+	//echo "Successful";
+if (isset($_POST['butId']))    
+{    
+	
+     $rows = $_POST['butId'];     // Instructions if $_POST['value'] exist    
+     echo "$rows";
 
 if($_SERVER["REQUEST_METHOD"]== "POST"){
-	$task = $_POST["task"];
+	$sql = "select TaskName from  my_task where id=$rows;";
+	
 
-if(!empty($task)){
-	$sql = "insert into my_task(UserId,TaskName,task_completed,task_edit,task_delete)values('$user_id','$task',0,0,0)";
+		$result = $connection->query($sql);
+		$row = $result->fetch_assoc();
+        echo "<p id='ss'>{$row['TaskName']}</p>";
+
+    
+    
+ 
+	}
+}
+
+$sql = "update  my_task set task_completed=1 where id=$rows";
 	if ($connection->query($sql) !== TRUE) {
     
     echo "Error: " . $sql . "<br>" . $connection->error;
 	}
-}
 
-///
-	
-	
-		$sql = "select * from my_task where UserId=$user_id;";
+////
+$sql = "select * from my_task where id=$rows";
 		$result = $connection->query($sql);
 		if ($result->num_rows > 0) {
     
@@ -98,23 +101,16 @@ if(!empty($task)){
         if($row['task_completed']==1){
                 echo '<script>Complete('.$row['id'].');</script>////';
         }
-        echo "<tr id='row{$row['id']}' class=''><td>{$row['UserId']}</td>
+        echo "<tr id='row{$row['id']}'><td>{$row['UserId']}</td>
         <td>{$row['TaskName']}</td>
-        <td><input type='button' value='Complete' id={$row['id']} onclick='Complete({$row['id']})'></td>
-        <td><input type='button' value='Edit' id={$row['id']} onclick='Edit({$row['id']})'></td>
-        <td> <input type='button' name='delete' id='delete' value='Delete'   onclick='delete_data({$row['id']})' ></td></tr>
+        <td>{$row['task_completed']}<input type='button' value='Complete' id={$row['id']} onclick='Complete({$row['id']})'></td>
+        <td>{$row['task_edit']}<input type='button' value='Edit' id={$row['id']} onclick='Edit({$row['id']})'></td>
+        <td>{$row['task_delete']} <input type='button' name='delete' id='delete' value='Delete' onclick='delete_data({$row['id']})' ></td></tr>
       
  \n";
-        }
-}   }
-
-
-$connection->close();
-//echo "Hello World".$_POST['id'];
-
-
+ 	}
+ }
 ?>
-<div id="div1">
-</div>
+
 </body>
 </html>
